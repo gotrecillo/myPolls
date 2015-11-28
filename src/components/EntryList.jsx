@@ -20,7 +20,15 @@ export default class EntryList extends Component {
           <h3>Entry Title</h3>
           <ul className="list-group">
             {
-              entries.map( (entry, index) => <EntryItem onRemoveEntryClick={this.props.onRemoveEntryClick} entry={entry} key={index}/> )
+              entries.map( (entry, index) => (
+                <EntryItem 
+                  onRemoveEntryClick={this.props.onRemoveEntryClick}
+                  onEditEntryTitleClick={this.props.onEditEntryTitleClick}
+                  entry={entry} 
+                  key={index}
+                  />
+                )
+              )
             }
           </ul>
           <EntryItemAdder onAddEntryClick={this.props.onAddEntryClick} poll={this.props.poll} />
@@ -33,6 +41,7 @@ EntryList.propTypes = {
   poll: PropTypes.object.isRequired,
   entries: PropTypes.array,
   onAddEntryClick: PropTypes.func.isRequired,
+  onEditEntryTitleClick: PropTypes.func.isRequired,
   onRemoveEntryClick: PropTypes.func.isRequired
 };
 

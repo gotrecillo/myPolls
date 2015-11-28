@@ -10,6 +10,7 @@ export const REMOVE_POLL = 'REMOVE_POLL';
 
 export const ADD_ENTRY = 'ADD_ENTRY';
 export const REMOVE_ENTRY = 'REMOVE_ENTRY';
+export const EDIT_ENTRY_TITLE = 'EDIT_ENTRY_TITLE';
 export const EDIT_POLL_TITLE = 'EDIT_POLL_TITLE';
 
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
@@ -96,6 +97,14 @@ export function removeEntry(idEntry, titleEntry) {
         msg: `Are you sure you want to remove the "${titleEntry}" entry?`
       }
   	}
+  };
+}
+
+export function editEntryTitle(idEntry, title) {
+  return { type: EDIT_ENTRY_TITLE, idEntry, title, 
+    meta: {
+      notify: { level: NotifyLevels.INFO }
+    }
   };
 }
 
