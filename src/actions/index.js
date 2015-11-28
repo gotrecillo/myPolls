@@ -87,13 +87,13 @@ export function addEntry(idPoll, title) {
   };
 }
 
-export function removeEntry(idEntry) {
+export function removeEntry(idEntry, titleEntry) {
   return { type: REMOVE_ENTRY, idEntry, 
   	meta: {
   		notify: { level: NotifyLevels.INFO },
       confirm: {
         pending: true,
-        msg: `Are you sure you want to remove entry?`
+        msg: `Are you sure you want to remove the "${titleEntry}" entry?`
       }
   	}
   };

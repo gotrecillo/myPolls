@@ -6,8 +6,8 @@ export default class EntryItem extends Component {
     super(props);
   }
 
-  handleRemoveButtonClick(idEntry) {
-    this.props.onRemoveEntryClick(idEntry);
+  handleRemoveButtonClick(idEntry, title) {
+    this.props.onRemoveEntryClick(idEntry, title);
   }
 
   render() {
@@ -17,7 +17,7 @@ export default class EntryItem extends Component {
       <li>
         {entry.title}
         <button
-          onClick={() => {this.handleRemoveButtonClick(entry.id);}} 
+          onClick={() => {this.handleRemoveButtonClick(entry.id, entry.title);}} 
           className="btn btn-warning">
           Remove
         </button>
