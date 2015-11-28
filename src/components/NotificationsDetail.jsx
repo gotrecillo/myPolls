@@ -6,15 +6,27 @@ export default class NotificationsDetail extends Component {
     super(props);
   }
 
-  handleRemoveButtonClick(index) {
-    this.props.onRemoveNotificationClick(index);
+  handleRemoveButtonClick(message) {
+    this.props.onRemoveNotificationClick(message);
+  }
+
+  handleRemoveAllButtonClick(){
+    this.props.onRemoveAllNotifications();
   }
 
   render() {
   	const { messages } = this.props;
+    const removeAll = messages.length !== 0 ? (
+      <div className="alert">
+        <button type="button" className="close" onClick={ () => {this.handleRemoveAllButtonClick();}}><span>&times;</span></button>
+        Remove all notifications
+      </div>) :
+      '';
+
     return (
       <div className="col-md-6">
       	<h3>Pending messages</h3>
+        { removeAll }
         { messages.map( (message, index) => {
           const className = message.isNew ? 'alert alert-info' : 'alert alert-success';
           return (<div key={index} className={className} role="alert">
@@ -30,7 +42,8 @@ export default class NotificationsDetail extends Component {
 
 NotificationsDetail.propTypes = {
   messages: PropTypes.array,
-  onRemoveNotificationClick: PropTypes.func.isRequired
+  onRemoveNotificationClick: PropTypes.func.isRequired,
+  onRemoveAllNotifications: PropTypes.func.isRequired
  };
 
  NotificationsDetail.defaultProps = { 

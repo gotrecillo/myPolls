@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { removeNotification } from '../actions';
+import { removeNotification, removeAllNotifications } from '../actions';
 
 import NotificationsDetail from '../components/NotificationsDetail';
 
@@ -11,7 +11,8 @@ function mapStateToProps(state) {
 
 function mapActionsToProps(dispatch) {
   return {
-  	onRemoveNotificationClick: (notification) => dispatch(removeNotification(notification))
+  	onRemoveNotificationClick: (notification) => dispatch(removeNotification(notification)),
+    onRemoveAllNotifications: () => dispatch(removeAllNotifications())
   };
 }
 

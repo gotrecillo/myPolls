@@ -14,6 +14,7 @@ export const EDIT_ENTRY_TITLE = 'EDIT_ENTRY_TITLE';
 export const EDIT_POLL_TITLE = 'EDIT_POLL_TITLE';
 
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
+export const REMOVE_ALL_NOTIFICATIONS = 'REMOVE_ALL_NOTIFICATIONS';
 
 export const CREATE_ACTION_CONFIRMATION = 'CREATE_ACTION_CONFIRMATION';
 export const REMOVE_ACTION_CONFIRMATION = 'REMOVE_ACTION_CONFIRMATION';
@@ -116,6 +117,17 @@ export function removeNotification(notification) {
   return { type: REMOVE_NOTIFICATION, notification };
 }
 
+export function removeAllNotifications(){
+  return { 
+      type: REMOVE_ALL_NOTIFICATIONS,
+      meta: {
+        confirm: {
+          pending: true,
+          msg: `Are you sure you want to remove all the notifications?`
+      }
+    }
+  };
+}
 /*
  * Confirm action creators
  */

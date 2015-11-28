@@ -1,4 +1,4 @@
-import { REMOVE_NOTIFICATION } from '../actions';
+import { REMOVE_NOTIFICATION, REMOVE_ALL_NOTIFICATIONS } from '../actions';
 import { ROUTER_DID_CHANGE } from 'redux-router/lib/constants';
 import _ from 'lodash';
 
@@ -24,6 +24,8 @@ export default function notifyReducer(state = [], action) {
   switch (action.type) {
     case REMOVE_NOTIFICATION:
       return removeNotification(state, action.notification);
+    case REMOVE_ALL_NOTIFICATIONS:
+      return [];
     case ROUTER_DID_CHANGE:
       return setAsReaded(state, action.payload.location.pathname);
     default:
