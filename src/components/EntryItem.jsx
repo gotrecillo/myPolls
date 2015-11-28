@@ -12,15 +12,14 @@ export default class EntryItem extends Component {
 
   render() {
     const { entry } = this.props;
-
     return (
-      <li>
-        {entry.title}
-        <button
-          onClick={() => {this.handleRemoveButtonClick(entry.id, entry.title);}} 
-          className="btn btn-warning">
-          Remove
-        </button>
+      <li className={'list-group-item action-element'} >
+        <div className="row">
+          <div className="col-lg-12">   
+            <span>{entry.title}</span>
+            <span onClick={() => this.handleRemoveButtonClick(entry.id, entry.title)} className={'pull-right glyphicon glyphicon-trash action-icon'}/>
+          </div>
+        </div>
       </li>
     );
   }

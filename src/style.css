@@ -16,3 +16,26 @@
 .list-group-item:hover .action-icon {
   display: inherit;
 }
+
+.entry-item{
+  background-color: #D681D6;
+}
+
+.entry-item{
+  cursor: pointer;
+}
+
+.entry-item button{
+  display: none
+}
+.entry-item:hover{
+  z-index: 2;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;  
+}
+
+.entry-item:hover button{
+  display: inherit;
+  float: right;
+}
