@@ -12,6 +12,14 @@ export default class ConfirmDialog extends Component {
     window.addEventListener('popstate', this.state.onpopstateHandler);
   }
 
+  componentWillUpdate(nextProps){
+    if(nextProps.isOpen){
+      setTimeout(function() {
+        this.refs.cancelButton.focus();
+      }.bind(this), 100);
+    }
+  }
+
   componentWillUnmount(){
     window.removeEventListener('popstate', this.state.onpopstateHandler);
   }
