@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import EntryItemAdder from './EntryItemAdder';
+import EntryItem from './EntryItem';
 
 export default class EntryList extends Component {
 
@@ -19,9 +20,9 @@ export default class EntryList extends Component {
           <h3>Entry Title</h3>
           <ul className="list-group">
             {
-              entries.map( (entry, index) => <li key={index}>{entry.title}<button onClick={() => this.handleRemoveButtonClick(entry.id)} className="btn btn-warning">Remove</button></li> )
+              entries.map( (entry, index) => <EntryItem onRemoveEntryClick={this.props.onRemoveEntryClick} entry={entry} key={index}/> )
             }
-         </ul>
+          </ul>
           <EntryItemAdder onAddEntryClick={this.props.onAddEntryClick} poll={this.props.poll} />
       </div>
     );
