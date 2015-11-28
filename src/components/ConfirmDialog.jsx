@@ -5,6 +5,15 @@ export default class ConfirmDialog extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {onpopstateHandler: () => {this.handleCancelClick();}};
+  }
+
+  componentDidMount(){
+    window.addEventListener('popstate', this.state.onpopstateHandler);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('popstate', this.state.onpopstateHandler);
   }
 
   handleCancelClick() {
