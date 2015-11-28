@@ -112,8 +112,8 @@ export function editEntryTitle(idEntry, title) {
  * Notification action creators
  */
 
-export function removeNotification(index) {
-  return { type: REMOVE_NOTIFICATION, index };
+export function removeNotification(notification) {
+  return { type: REMOVE_NOTIFICATION, notification };
 }
 
 /*

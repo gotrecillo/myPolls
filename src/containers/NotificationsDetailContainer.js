@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 function mapActionsToProps(dispatch) {
   return {
-  	onRemoveNotificationClick: (index) => dispatch(removeNotification(index))
+  	onRemoveNotificationClick: (notification) => dispatch(removeNotification(notification))
   };
 }
 

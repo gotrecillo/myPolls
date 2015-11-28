@@ -1,8 +1,9 @@
 import { REMOVE_NOTIFICATION } from '../actions';
 import { ROUTER_DID_CHANGE } from 'redux-router/lib/constants';
+import _ from 'lodash';
 
 function removeNotification(state, action) {
-  return state.filter( (message, index) => index !== action.index );
+  return state.filter( (message) => !_.isEqual(message, action) );
 }
 
 function addNotification(state, action) {
@@ -22,7 +23,7 @@ function setAsReaded(state, path) {
 export default function notifyReducer(state = [], action) {
   switch (action.type) {
     case REMOVE_NOTIFICATION:
-      return removeNotification(state, action);
+      return removeNotification(state, action.notification);
     case ROUTER_DID_CHANGE:
       return setAsReaded(state, action.payload.location.pathname);
     default:
