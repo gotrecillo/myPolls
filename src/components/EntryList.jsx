@@ -1,17 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import EntryItemAdder from './EntryItemAdder';
 
 export default class EntryList extends Component {
 
   constructor(props) {
     super(props);
-  }
-
-  handleAddButtonClick() {
-    const { poll, onAddEntryClick } = this.props;
-    const node = this.refs.title;
-    const title =  node.value.trim();
-    onAddEntryClick(poll.id, title);
-    node.value = '';
   }
 
   handleRemoveButtonClick(idEntry) {
@@ -29,12 +22,7 @@ export default class EntryList extends Component {
               entries.map( (entry, index) => <li key={index}>{entry.title}<button onClick={() => this.handleRemoveButtonClick(entry.id)} className="btn btn-warning">Remove</button></li> )
             }
          </ul>
-          <div className="input-group">
-            <input type="text" className="form-control" placeholder="Entry Title" ref="title"/>
-            <span className="input-group-btn">
-              <button className="btn btn-info" type="button" onClick={e => this.handleAddButtonClick(e)}>Add Entry</button>
-            </span>
-          </div>
+          <EntryItemAdder onAddEntryClick={this.props.onAddEntryClick} poll={this.props.poll} />
       </div>
     );
   }
