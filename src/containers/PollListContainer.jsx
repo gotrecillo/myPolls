@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function mapActionsToProps(dispatch) {
   return {
     onAddPoll: title => dispatch(addPoll(title)),
-    onRemovePoll: (idPoll, title) => dispatch(removePoll(idPoll, title))
+    onRemovePoll: (idPoll, title) => dispatch(removePoll(idPoll, title)).catch(x=>x)
   };
 }
 

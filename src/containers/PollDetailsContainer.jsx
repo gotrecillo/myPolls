@@ -36,7 +36,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
   	onAddEntryClick: (idPoll, title) => dispatch(addEntry(idPoll, title)),
-    onRemoveEntryClick: (idEntry) => dispatch(removeEntry(idEntry)),
+    onRemoveEntryClick: (idEntry) => dispatch(removeEntry(idEntry)).catch(_ => _),
     onRemovePollClick: (idPoll, title) => dispatch(removePollAndNavigate(idPoll, title)),
     onEditPollTitleClick: (idPoll, newTitle) => dispatch(editPollTitle(idPoll, newTitle))
   };

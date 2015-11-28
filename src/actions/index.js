@@ -90,7 +90,11 @@ export function addEntry(idPoll, title) {
 export function removeEntry(idEntry) {
   return { type: REMOVE_ENTRY, idEntry, 
   	meta: {
-  		notify: { level: NotifyLevels.INFO }
+  		notify: { level: NotifyLevels.INFO },
+      confirm: {
+        pending: true,
+        msg: `Are you sure you want to remove entry?`
+      }
   	}
   };
 }
