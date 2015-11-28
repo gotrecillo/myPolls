@@ -5,7 +5,8 @@ export default class PollDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false
+      editing: false,
+      titleError: false
     };
   }
 
@@ -28,19 +29,43 @@ export default class PollDetails extends Component {
 
   handleCancelClick() {
     this.setState({
-      editing: false
+      editing: false, titleError:false
     });
   }
 
   handleOkClick() {
+    this._validateTitleAndEdit.bind(this)();
+  }
+
+  handleKeyDown(e){
+    const ENTER_KEY = 13;
+    const ESC_KEY = 27;
+    if (e.keyCode === ENTER_KEY) {
+      this._validateTitleAndEdit.bind(this)();
+    }
+    if (e.keyCode === ESC_KEY) {
+      this.setState({editing: false, titleError: false});
+    }
+  }
+
+  _validateTitleAndEdit(){
     const node = this.refs.title;
     const { poll, onEditPollTitleClick } = this.props;
+    const title = node.value.trim();
 
-    this.setState({
-      editing: false
-    });
+    if(!title){
+      this.setState({titleError: true});
+      node.focus();
+      node.value='';
+      node.placeholder='Choose a poll name';
+    }
 
-    onEditPollTitleClick(poll.id, node.value.trim());
+    if(title){
+      this.setState({titleError: false, editing: false});
+      if(title !== poll.title){
+        onEditPollTitleClick(poll.id, node.value.trim());
+      }
+    }
   }
 
   render() {
@@ -51,10 +76,17 @@ export default class PollDetails extends Component {
             <span  className={`${this.state.editing ? 'hidden' : ''}`}>
               { poll.title }
               <span style={{'marginLeft': '20px'}} className="btn glyphicon glyphicon-edit" onClick={ () => this.handleEditClick() }/>
-              <button onClick={() => this.handleRemoveButtonClick(poll.id, poll.title)} className="btn btn-warning glyphicon glyphicon-trash pull-right"></button>
+              <button
+                onClick={() => this.handleRemoveButtonClick(poll.id, poll.title)}
+                className="btn btn-warning glyphicon glyphicon-trash pull-right"
+              />
             </span>
-            <div className={`input-group ${this.state.editing ? '' : 'hidden'}`}>
-              <input className="form-control" ref="title"/>
+            <div className={`input-group ${this.state.editing ? '' : 'hidden'} ${this.state.titleError ? 'has-error' : ''}`}>
+              <input 
+                className="form-control"
+                ref="title"
+                onKeyDown={e => this.handleKeyDown(e)}
+              />
               <span className="input-group-btn">
                 <button className="btn btn-danger" type="button" onClick={e => this.handleCancelClick(e)}><span className="glyphicon glyphicon-remove" /></button>
                 <button className="btn btn-success" type="button" onClick={e => this.handleOkClick(e)}><span className="glyphicon glyphicon-ok" /></button>
