@@ -4,7 +4,7 @@ export default class EntryItemAdder extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {addDisabled: true};
+    this.state = {addDisabled: true, titleError: false};
   }
 
   handleAddButtonClick() {
@@ -16,6 +16,10 @@ export default class EntryItemAdder extends Component {
     if (e.keyCode === ENTER_KEY && !this.state.addDisabled) {
       this._addEntry.bind(this)();
     }
+    if (e.keyCode === ENTER_KEY && this.state.addDisabled) {
+      this.refs.title.value='';
+      this.setState({titleError: true});
+    }
   }
 
   _addEntry(){
@@ -24,7 +28,7 @@ export default class EntryItemAdder extends Component {
     const title =  node.value.trim();
     onAddEntryClick(poll.id, title);
     node.value = '';
-    this.setState({addDisabled: true});
+    this.setState({addDisabled: true, titleError: false});
   }
 
   handleChangeTitle() {
@@ -38,7 +42,7 @@ export default class EntryItemAdder extends Component {
 
   render() {
     return (
-      <div className="input-group">
+      <div className={`input-group ${this.state.titleError ? 'has-error' : ''}`}>
         <input 
           type="text"
           className="form-control"
