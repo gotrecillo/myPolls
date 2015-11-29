@@ -43,11 +43,3 @@
 .navbar li:hover{
   background-color: red;
 }
-
-li.active-tab, li.active-tab:hover{
-  background-color: green;
-}
-
-li.active-tab a{
-  color:white !important;
-}
