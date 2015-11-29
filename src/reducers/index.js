@@ -4,12 +4,14 @@ import polls from './poll';
 import entries from './entry';
 import messages from './notify';
 import actionsPending from './confirm';
+import pollPagination from './pollPagination';
 
 const pollApp = combineReducers({
   polls,
   entries,
   router,
   messages,
+  pollPagination,
   actionsPending
 });
 

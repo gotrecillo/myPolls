@@ -19,6 +19,7 @@ export const REMOVE_ALL_NOTIFICATIONS = 'REMOVE_ALL_NOTIFICATIONS';
 export const CREATE_ACTION_CONFIRMATION = 'CREATE_ACTION_CONFIRMATION';
 export const REMOVE_ACTION_CONFIRMATION = 'REMOVE_ACTION_CONFIRMATION';
 
+export const CHANGE_POLLS_PAGE = 'CHANGE_POLLS_PAGE';
 /*
  * other constants
  */
@@ -75,6 +76,14 @@ export function editPollTitle(idPoll, title) {
       notify: { level: NotifyLevels.INFO }
     }
   };
+}
+
+/**
+* Pagination action creators
+*/
+
+export function changePollsPage(page){
+  return { type: CHANGE_POLLS_PAGE, page };
 }
 
 /*

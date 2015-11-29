@@ -2,10 +2,13 @@ import { connect } from 'react-redux';
 
 import PollList from '../components/PollList';
 import { addPoll, removePoll } from '../actions';
+import _ from 'lodash';
 
 function mapStateToProps(state) {
+  const { pollPagination, polls } = state;
+  let shownPolls = _.sortBy(polls, poll => poll.title.toLowerCase());
   return {
-    polls: state.polls
+    polls: shownPolls
   };
 }
 
