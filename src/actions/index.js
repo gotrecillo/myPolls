@@ -142,7 +142,13 @@ function removeActionConfirmation(pendingAction) {
 
 export function cancelAction(pendingAction) {
   return dispatch => sequencer([
-      () => pendingAction.meta.confirm.reject(pendingAction),
+      () => {
+        if (pendingAction){
+          return pendingAction.meta.confirm.reject(pendingAction);
+        }else {
+          return pendingAction;
+        }  
+      },
       () => dispatch(removeActionConfirmation(pendingAction))
     ]);
 }

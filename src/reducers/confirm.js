@@ -14,7 +14,10 @@ function createActionConfirmation(state, pendingAction) {
 }
 
 function removeActionConfirmation(state, pendingAction) {
-  return state.remove(pendingAction.idConfirmation);
+  if(pendingAction){
+    return state.remove(pendingAction.idConfirmation);  
+  }
+  return state;
 }
 
 export default function entryReducer(state = OrderedMap(), action) {
