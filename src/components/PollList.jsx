@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PollItem from './PollItem';
+import PaginationNav from './PaginationNav';
 
 export default class PollList extends Component {
 
@@ -38,14 +39,27 @@ export default class PollList extends Component {
     }
   }
 
+  _getPaginationBar(){
+    const { pollPage, totalPages, onChangePage } = this.props;
+    return (
+      <PaginationNav
+        actualPage={pollPage}
+        totalPages={totalPages}
+        onChangePage={onChangePage} 
+      />
+    );
+  }
+
   render() {
 
-    const { polls, onRemovePoll } = this.props;
+    const { polls, onRemovePoll, totalPages } = this.props;
+    const paginationBar = totalPages > 1 ? this._getPaginationBar() : '';
 
     return (
       <div className="row">
         <div className="col-md-12">
           <h3>Poll Title</h3>
+          {paginationBar}
           <ul className="list-group">
             {
               polls.map( (poll, index) =>  <PollItem key={index} poll={poll} onRemovePoll={onRemovePoll} /> )
@@ -65,8 +79,11 @@ export default class PollList extends Component {
 
 PollList.propTypes = {
   polls: PropTypes.array,
+  totalPages: PropTypes.number,
+  pollPage: PropTypes.number,
   onAddPoll: PropTypes.func.isRequired,
-  onRemovePoll: PropTypes.func.isRequired
+  onRemovePoll: PropTypes.func.isRequired,
+  onChangePage: PropTypes.func.isRequired
 };
 
 PollList.defaultProps = { 

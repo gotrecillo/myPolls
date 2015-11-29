@@ -1,21 +1,26 @@
 import { connect } from 'react-redux';
 
 import PollList from '../components/PollList';
-import { addPoll, removePoll } from '../actions';
+import { addPoll, removePoll, changePollsPage } from '../actions';
 import _ from 'lodash';
 
 function mapStateToProps(state) {
   const { pollPagination, polls } = state;
-  let shownPolls = _.sortBy(polls, poll => poll.title.toLowerCase());
+  let shownPolls = _.sortBy(polls, poll => poll.title.toLowerCase())
+                    .slice(pollPagination * 10, pollPagination * 10 + 10);
+  const totalPages = Math.ceil(polls.length / 10);
   return {
-    polls: shownPolls
+    totalPages,
+    polls: shownPolls,
+    pollPage: pollPagination,
   };
 }
 
 function mapActionsToProps(dispatch) {
   return {
     onAddPoll: title => dispatch(addPoll(title)),
-    onRemovePoll: (idPoll, title) => dispatch(removePoll(idPoll, title)).catch(x=>x)
+    onRemovePoll: (idPoll, title) => dispatch(removePoll(idPoll, title)).catch(x=>x),
+    onChangePage: (page) => dispatch(changePollsPage(page))
   };
 }
 
