@@ -10,9 +10,7 @@ export default class Notifications extends Component {
   render() {
     const { pending, total } = this.props;
     return (
-      <div>
         <Link to="/notifications">Messages <span className="badge">{total === 0 ? 0 : `${pending}/${total}`}</span></Link>
-      </div>
     );
   }
 }

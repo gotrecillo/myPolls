@@ -44,7 +44,7 @@ export default class PollList extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-12">
           <h3>Poll Title</h3>
           <ul className="list-group">
             {

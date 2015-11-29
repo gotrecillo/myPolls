@@ -12,21 +12,16 @@ export default class App extends Component {
   render() {
     return (
       <div>
-      	<h1>Welcome to Poll App</h1>
-      	<div className="row">
-        	<div className="col-lg-1">
-  	    		<Link to="/poll">Show Polls</Link>
-  	    	</div>
-  	    	<div className="col-lg-1">
-  	    		<Link to="/">Hide Polls</Link>
-  	    	</div>
-          <div className="col-lg-1">
-            <NotificationsContainer />
-          </div>
+      	<h1 className="text-center">Welcome to Poll App</h1>
+
+          <ul className="nav nav-tabs nav-justified text-center">
+            <li role="presentation"><Link to="/poll">Show Polls</Link></li>
+            <li role="presentation"><Link to="/">Hide Polls</Link></li>
+            <li role="presentation"><NotificationsContainer/></li>
+          </ul>
           <div>
             <ConfirmDialogContainer/>
           </div>
-  	    </div>
   	    {this.props.children}
       </div>
     );
