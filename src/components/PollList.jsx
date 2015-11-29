@@ -58,13 +58,14 @@ export default class PollList extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <h3>Poll Title</h3>
           {paginationBar}
+          <h3>Poll Title</h3>
           <ul className="list-group">
             {
               polls.map( (poll, index) =>  <PollItem key={index} poll={poll} onRemovePoll={onRemovePoll} /> )
             }
-         </ul>
+          </ul>
+          {paginationBar}
           <div className="input-group">
             <input type="text" className="form-control" placeholder="Pull Title" ref="title" onKeyDown={e => this.handleOnTitleKeyDown(e)} onChange={e => this.handleOnChangeTitle(e)}/>
             <span className="input-group-btn">

@@ -8,14 +8,14 @@ export default React.createClass({
   },
 
   handleButtonClick: function() {
-    this.props.onChangePage(this.props.page - 1);
+    this.props.onChangePage(this.props.page);
   },
 
   render: function() {
-    let btnClass = this.props.page - 1 === this.props.actualPage ? 'active' : '';
+    let btnClass = this.props.page === this.props.actualPage ? 'active' : '';
 
     return (
-      <li className={btnClass} onClick={this.handleButtonClick}><a href="#">{this.props.page}</a></li>
+      <li className={btnClass} onClick={this.handleButtonClick}><a style={{width: '3em', textAlign: 'center'}} href="#">{this.props.page}</a></li>
     );
   }
 });

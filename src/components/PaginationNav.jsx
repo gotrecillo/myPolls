@@ -23,7 +23,7 @@ export default React.createClass({
                                            this.props.actualPage - 4;
     let pagesToList = (this.props.totalPages < 10) ? this.props.totalPages : 9;
       return (
-        <ul className="pagination pagination-sm">
+        <ul className="pagination pagination-sm col-xs-12">
           {
             Array.apply(null, {length: pagesToList}).map(function(value, index){
               return (

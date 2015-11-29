@@ -7,7 +7,7 @@ import _ from 'lodash';
 function mapStateToProps(state) {
   const { pollPagination, polls } = state;
   let shownPolls = _.sortBy(polls, poll => poll.title.toLowerCase())
-                    .slice(pollPagination * 10, pollPagination * 10 + 10);
+                    .slice((pollPagination -1 ) * 10, (pollPagination -1 ) * 10 + 10);
   const totalPages = Math.ceil(polls.length / 10);
   return {
     totalPages,
