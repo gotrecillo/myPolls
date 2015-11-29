@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default React.createClass({
-  propTypes: {
-    page: React.PropTypes.number,
-    actualPage: React.PropTypes.number,
-    onChangePage: React.PropTypes.func
-  },
+export default class PaginationButton extends Component {
 
-  handleButtonClick: function() {
+  handleButtonClick(){
     this.props.onChangePage(this.props.page);
-  },
+  }
 
-  render: function() {
+  render() {
     let btnClass = this.props.page === this.props.actualPage ? 'active' : '';
-
     return (
       <li className={btnClass} onClick={this.handleButtonClick}><a style={{width: '3em', textAlign: 'center'}} href="#">{this.props.page}</a></li>
     );
   }
-});
+}
+
+PaginationButton.propTypes = {
+  page: PropTypes.number,
+  actualPage: PropTypes.number,
+  onChangePage: PropTypes.func
+};
